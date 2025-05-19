@@ -86,14 +86,31 @@ def save_to_csv(papers: List[Dict[str, Any]], filename: str) -> None:
         for paper in papers:
             writer.writerow(paper)
 
-    print(f"Results saved to {filename}")
+    print(f"✅ Results saved to {filename}")
 
 if __name__ == "__main__":
-    print("Running fetcher.py...")
-    paper_ids = search_pubmed("pharmaceutical company")
-    print(f"Found paper IDs: {paper_ids}")
-    papers = fetch_details(paper_ids)
-    for paper in papers:
-        print(paper)
+    print("🔍 Running fetcher.py...")
 
-    save_to_csv(papers, "pubmed_papers.csv")
+    queries = [
+        "pharmaceutical company",
+        "biotech company",
+        "clinical research organization",
+        "medical device company",
+        "drug development industry"
+    ]
+
+    for query in queries:
+        print(f"\n🔎 Searching PubMed for: '{query}'")
+        try:
+            paper_ids = search_pubmed(query)
+            print(f"Found {len(paper_ids)} paper IDs.")
+            papers = fetch_details(paper_ids)
+
+            num_non_acad = sum(1 for p in papers if p['Non-academic Author(s)'])
+            print(f"{num_non_acad} papers had at least one non-academic author.")
+
+            filename = f"pubmed_papers_{query.replace(' ', '_')}.csv"
+            save_to_csv(papers, filename)
+
+        except Exception as e:
+            print(f"❌ Error processing query '{query}': {e}")
