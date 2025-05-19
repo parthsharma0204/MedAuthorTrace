@@ -11,12 +11,12 @@ This Python-based command-line tool enables users to query **PubMed** for resear
 - Supports **full PubMed query syntax** for precise and flexible searches.
 - Identifies papers with authors affiliated with **non-academic institutions**, specifically **biotech and pharmaceutical companies**.
 - Extracts essential metadata, including:
-  - **PubMed ID**
-  - **Title**
-  - **Publication Date**
-  - **Non-academic Author(s)**
-  - **Company Affiliation(s)**
-  - **Corresponding Author Email**
+  - 🆔 **PubMed ID**
+  - 📝 **Title**
+  - 🗓️ **Publication Date**
+  - 🧑‍🔬 **Non-academic Author(s)**
+  - 🏢 **Company Affiliation(s)**
+  - 📧 **Corresponding Author Email**
 - Outputs the results in a well-formatted **CSV file**.
 - Includes command-line options for user assistance and debugging.
 
@@ -33,4 +33,4 @@ This Python-based command-line tool enables users to query **PubMed** for resear
 ### ▶️ Example
 
 ```bash
-python pubmed_pharma_scraper.py "cancer immunotherapy" -f results.csv --debug
+poetry run python -m src.get_paper_list.cli "cancer immunotherapy" -f results.csv --debug
