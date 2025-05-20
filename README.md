@@ -55,7 +55,8 @@ pip install requests tqdm
 
 ### Example Command
 
-```poetry run python -m get_paper_list.fetcher --queries "pharmaceutical company" "biotech startup" "veterinary medicine" "healthcare AI" --output data_results --max-results 500
+```
+poetry run python -m get_paper_list.fetcher --queries "pharmaceutical company" "biotech startup" "veterinary medicine" "healthcare AI" --output data_results --max-results 500
 
 ```
 
