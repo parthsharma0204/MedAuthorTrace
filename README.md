@@ -55,17 +55,15 @@ pip install requests tqdm
 
 ### Example Command
 
-```bash
-poetry run python -m get_paper_list.fetcher \
-  --queries "cancer immunotherapy" "gene therapy" "vaccine development" \
-  --output my_search_results --max-results 500
+```poetry run python -m get_paper_list.fetcher --queries "pharmaceutical company" "biotech startup" "veterinary medicine" "healthcare AI" --output data_results --max-results 500
+
 ```
 
 This will:
 
 * Search PubMed for the three specified queries.
 * Fetch up to 500 papers for each query.
-* Save CSV files in the folder `my_search_results/`.
+* Save CSV files in the folder `data_results`.
 
 ---
 
@@ -74,9 +72,10 @@ This will:
 The tool generates CSV files named like:
 
 ```
-pubmed_papers_cancer_immunotherapy.csv
-pubmed_papers_gene_therapy.csv
-pubmed_papers_vaccine_development.csv
+pubmed_papers_veterinary_medicine.csv
+pubmed_papers_biotech_startup.csv
+pubmed_papers_healthcare_AI.csv
+pubmed_papers_pharmaceutical_company.csv
 ```
 
 Each file contains the extracted metadata and filtered author info.
