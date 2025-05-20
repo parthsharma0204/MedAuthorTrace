@@ -1,4 +1,4 @@
-# 🔬 PubMed Pharma Paper Finder
+# 🔬 MedAuthorTrace
 
 ## 📚 Overview
 
