@@ -1,36 +1,108 @@
-# 🧬 PubMed Pharma Paper Finder
+# 🔬 PubMed Pharma Paper Finder
 
-## 📖 Overview
+## 📚 Overview
 
-This Python-based command-line tool enables users to query **PubMed** for research articles and filter results to include only those with **at least one author affiliated with a pharmaceutical or biotechnology company**. The program compiles the extracted data into a structured **CSV file** for downstream use.
-
----
-
-## 🎯 Key Features
-
-- Supports **full PubMed query syntax** for precise and flexible searches.
-- Identifies papers with authors affiliated with **non-academic institutions**, specifically **biotech and pharmaceutical companies**.
-- Extracts essential metadata, including:
-  - 🆔 **PubMed ID**
-  - 📝 **Title**
-  - 🗓️ **Publication Date**
-  - 🧑‍🔬 **Non-academic Author(s)**
-  - 🏢 **Company Affiliation(s)**
-  - 📧 **Corresponding Author Email**
-- Outputs the results in a well-formatted **CSV file**.
-- Includes command-line options for user assistance and debugging.
+This Python command-line tool allows users to search **PubMed** for research articles and filter results to include only those with **at least one author affiliated with pharmaceutical, biotech, or related industry companies**. The extracted data is saved into structured **CSV files** for further analysis or reporting.
 
 ---
 
-## 🧰 Usage
+## 🚀 Key Features
 
-### 🔧 Command-Line Options
+* Supports **advanced PubMed queries** for targeted literature searches.
+* Detects authors with **non-academic affiliations** such as pharmaceutical or biotech companies.
+* Extracts detailed metadata including:
 
-- `-h` or `--help`: Display usage instructions.
-- `-d` or `--debug`: Enable debug output during execution.
-- `-f` or `--file`: Specify the output CSV file name.
+  * 🔖 **PubMed ID (PMID)**
+  * 📰 **Article Title**
+  * 📅 **Publication Date**
+  * 👩‍💼 **Non-academic Author(s)**
+  * 🏢 **Company Affiliation(s)**
+  * 📧 **Corresponding Author Email**
+  * 🏛️ **Journal Name**
+  * 🌐 **DOI**
+  * 📝 **Abstract**
+* Saves results into CSV files named per query for easy organization.
+* Robust error handling and retry logic.
+* Displays progress bars during data fetching.
+* Supports command-line arguments for customization.
 
-### ▶️ Example
+---
+
+## 🛠️ Installation
+
+Make sure you have Python 3.7+ and `poetry` installed, then:
 
 ```bash
-poetry run python -m src.get_paper_list.cli "cancer immunotherapy" -f results.csv --debug
+poetry install
+```
+
+Or install dependencies manually:
+
+```bash
+pip install requests tqdm
+```
+
+---
+
+## 🎯 Usage
+
+### Command-Line Options
+
+* `--help` : Show help message and exit.
+* `--output` : Directory to save CSV files (default: `results`).
+* `--queries` : List of search queries (default includes pharma/biotech related terms).
+* `--max-results` : Maximum number of PubMed records to retrieve per query (default: 1000).
+
+### Example Command
+
+```bash
+poetry run python -m get_paper_list.fetcher \
+  --queries "cancer immunotherapy" "gene therapy" "vaccine development" \
+  --output my_search_results --max-results 500
+```
+
+This will:
+
+* Search PubMed for the three specified queries.
+* Fetch up to 500 papers for each query.
+* Save CSV files in the folder `my_search_results/`.
+
+---
+
+## 📂 Output
+
+The tool generates CSV files named like:
+
+```
+pubmed_papers_cancer_immunotherapy.csv
+pubmed_papers_gene_therapy.csv
+pubmed_papers_vaccine_development.csv
+```
+
+Each file contains the extracted metadata and filtered author info.
+
+---
+
+## ⚙️ Configuration
+
+* Optionally set your **NCBI API key** as an environment variable for higher rate limits:
+
+```bash
+export NCBI_API_KEY="your_api_key_here"
+```
+
+* Make sure your `get_paper_list.utils` module is correctly implemented for affiliation and email extraction.
+
+---
+
+## 🆘 Troubleshooting
+
+* Ensure required packages are installed (`requests`, `tqdm`).
+* Check internet connectivity as PubMed APIs require network access.
+* Use the `--max-results` flag wisely to avoid hitting API rate limits.
+
+---
+
+## 📄 License
+
+MIT License
